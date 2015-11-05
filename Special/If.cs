@@ -12,6 +12,10 @@ namespace Tree
         {
             Printer.printIf(t, n, p);
         }
+        public override void eval()
+        {
+            
+        }
     }
 }
 
