@@ -74,21 +74,21 @@ namespace Tree
             }
             else
             {
-                cdr = cdr.getCar()  //THIS IS THE CADR
+                cdr = cdr.getCar()  //THIS IS THE CADR, DOESNT WORK FOR (1 . 2) 
             }  
             String symbolNode = symbol.getName();
             if(symbolNode.equals("symbol?"))
             {
-                return new BooleanLit(car.isSymbol());
+                return new BoolLit(car.isSymbol());
             }
             if(symbolNode.equals("number?"))
             {
-                return new BooleanLit(car.isNumber());
+                return new BoolLit(car.isNumber());
             }
             
             if(car.isNumber() && cdr.isNumber())
             {
-                if(symbolNode.equals("b+"))
+                if(symbolNode.equals("b+")) //can be multiple
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
@@ -100,7 +100,7 @@ namespace Tree
                     int b = cdr.getValue();
                     return new IntLit(a-b);
                 }
-                if(symbolNode.equals("b*"))
+                if(symbolNode.equals("b*")) //can be multiple
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
@@ -112,19 +112,19 @@ namespace Tree
                     int b = cdr.getValue();
                     return new IntLit(a/b);
                 }
-                if(symbolNode.equals("b="))
+                if(symbolNode.equals("b=")) //can be multiple nodes
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
                     return new BoolLit(a=b);
                 }
-                if(symbolNode.equals("b<"))
+                if(symbolNode.equals("b<")) //can be multiple nodes
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
                     return new BoolLit(a<b);
                 }
-                if(symbolNode.equals("b>"))
+                if(symbolNode.equals("b>"))//can be multiple nodes
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
@@ -133,50 +133,42 @@ namespace Tree
             } 
             if(symbolNode.equals("car"))
             {
-                if(car.isNull)
-                {
-                    return car;
-                }
-                else
-                {
-                    return car.getCar;
-                }
+                 car = car.getCar; //previously had check for null car
+                 if (car == null || car.isNull())
+                    Console.WriteLine("OOOOOOH SHIT DEMS BE ERRORS IN BUILTIN APPLY CALL OF CAR");
+                 return car;
             }
-            if(symbolNode.equals("cdr"))
+            if(symbolNode.equals("cdr")) //requires a list, minimum '(example)
             {
-                if(car.isNull)
-                {
-                    return car;
-                }
-                else
-                {
-                    return car.getCdr;
-                }
+                cdr = car.getCdr();
+                if (cdr == null || cdr.isNull())
+                    Console.WriteLine("OOOOOOH SHIT DEMS BE ERRORS IN BUILTIN APPLY CALL OF CDR");
+                return car.getCdr;
             }
             if(symbolNode.equals("cons"))
             {
-                return new Cons(car,cdr);
+                return new Cons(car,cdr); //assumes we already have a list going on
             }
             
-            if(symbolNode.equals("set-car!"))
+            if(symbolNode.equals("set-car!")) //needs better checks of criteria, errors
             {
-                car.setCar(cdr);
+                car.setCar(cdr); //this looks correct. 
                 return car;
             }
-            if(symbolNode.equals("set-cdr!"))
+            if(symbolNode.equals("set-cdr!")) //needs better checks of criteria, errors
             {
                 car.setCdr(cdr);
                 return car;
             }
-            if(symbolNode.equals("null?"))
+            if(symbolNode.equals("null?")) //check for only 1 argument 
             {
                 return new BoolLit(car.isNull());
             }
-            if(symbolNode.equals("pair?"))
+            if(symbolNode.equals("pair?")) //1 argument
             {
                 return new BoolLit(car.isPair());
             }
-            if(symbolNode.equals("eq?"))     //Equals for ints, bools, strings, nodes
+            if(symbolNode.equals("eq?"))     //Equals for ints, bools, strings. nodes (only 2 arguments)
             {
                 if(car.isNumber() && cdr.isNumber())
                 {
@@ -190,40 +182,40 @@ namespace Tree
                 {
                     return new BoolLit(car.getValue().equals(cdr.getValue()));
                 }
-                
             }
-            if(symbolNode.equals("procedure?"))
+            if(symbolNode.equals("procedure?")) //one argument
             {
                 return new BoolLit(car.isProcedure());
             }
-            if(symbolNode.equals("read"))
+            if(symbolNode.equals("read")) // not started
             {
-                Parser P = new Parser();
+                Parser P = new Parser(); //?????
                 
             }
-            if(symbolNode.equals("write"))
-            {
-                
-            }
-            if(symbolNode.equals("display"))
+            if(symbolNode.equals("write")) // not started
             {
                 
             }
-            if(symbolNode.equals("newline"))
+            if(symbolNode.equals("display")) //one argument
             {
-                
+                return Console.Write(car); // may have to be recursive?
             }
-            if(symbolNode.equals("eval"))
+            if(symbolNode.equals("newline")) // not started
             {
-                
+                return Console.WriteLine(); //shhhhhh no tears
             }
-            if(symbolNode.equals("apply"))
+            if(symbolNode.equals("eval")) // not started
             {
-                
+                //Make some dumb switch statement to call c# eval or (eval '(z yet) env)??
+                return eval(args);
             }
-            if(symbolNode.equals("interaction-environment"))
+            if(symbolNode.equals("apply")) // not started
             {
-                
+                return apply(car); //??
+            }
+            if(symbolNode.equals("interaction-environment")) // not started
+            {
+                //what the flying fuck?!?
             }
             
             
