@@ -33,5 +33,9 @@ namespace Tree
         {
             return true;
         }
+        
+        public bool getBool() {
+		  return boolVal;
+	}
     }
 }
