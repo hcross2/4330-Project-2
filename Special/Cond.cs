@@ -1,5 +1,3 @@
-// Cond -- Parse tree node strategy for printing the special form cond
-
 using System;
 
 namespace Tree
@@ -12,7 +10,15 @@ namespace Tree
         { 
             Printer.printCond(t, n, p);
         }
+        
+        public Node eval(Node t, Environment env)
+        {
+            Node condition;
+            condition = t.getCar().getCdr();
+            while (!(condition.eval(env).getBool()))
+            {
+                eval(condition.getCar().getCdr(), env);
+            }
+        }
     }
 }
-
-

@@ -12,6 +12,10 @@ namespace Tree
         {
             Printer.printQuote(t, n, p);
         }
+        
+        public node eval(Node t, Environment env)
+        {
+            return t.getCdr().getCar(); //where do we check for quote?
+        }
     }
 }
-
