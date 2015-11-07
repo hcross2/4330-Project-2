@@ -88,7 +88,7 @@ namespace Tree
             
             if(car.isNumber() && cdr.isNumber())
             {
-                if(symbolNode.equals("b+")) //can be multiple
+                if(symbolNode.equals("b+"))
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
@@ -100,7 +100,7 @@ namespace Tree
                     int b = cdr.getValue();
                     return new IntLit(a-b);
                 }
-                if(symbolNode.equals("b*")) //can be multiple
+                if(symbolNode.equals("b*"))
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
@@ -112,19 +112,19 @@ namespace Tree
                     int b = cdr.getValue();
                     return new IntLit(a/b);
                 }
-                if(symbolNode.equals("b=")) //can be multiple nodes
+                if(symbolNode.equals("b="))
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
                     return new BoolLit(a=b);
                 }
-                if(symbolNode.equals("b<")) //can be multiple nodes
+                if(symbolNode.equals("b<"))
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
                     return new BoolLit(a<b);
                 }
-                if(symbolNode.equals("b>"))//can be multiple nodes
+                if(symbolNode.equals("b>"))
                 {
                     int a = car.getValue();
                     int b = cdr.getValue();
@@ -160,7 +160,7 @@ namespace Tree
                 car.setCdr(cdr);
                 return car;
             }
-            if(symbolNode.equals("null?")) //check for only 1 argument 
+            if(symbolNode.equals("null?")) 
             {
                 return new BoolLit(car.isNull());
             }
@@ -183,7 +183,7 @@ namespace Tree
                     return new BoolLit(car.getValue().equals(cdr.getValue()));
                 }
             }
-            if(symbolNode.equals("procedure?")) //one argument
+            if(symbolNode.equals("procedure?"))
             {
                 return new BoolLit(car.isProcedure());
             }

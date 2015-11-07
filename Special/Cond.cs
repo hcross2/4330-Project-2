@@ -13,11 +13,23 @@ namespace Tree
         
         public Node eval(Node t, Environment env)
         {
-            Node condition;
-            condition = t.getCar().getCdr();
-            while (!(condition.eval(env).getBool()))
+            Node expression;
+            if ((!t.isPair()))
             {
-                eval(condition.getCar().getCdr(), env);
+                Console.write("Invalid Cond statement");
+            }
+            expression = t.getCdr();
+            while (!(expression.getCar().getCar().eval(env).isBool())) //This step skips all the false bools to find the one that returns true
+            {
+                exp=exp.getCdr();
+            }
+            if(exp.isNull()) //if it is of the empty list form, return it, which is what this does
+            {
+                return new Nil();
+            }
+            else
+            {
+                return (exp.getCar().getCdr().eval(env));
             }
         }
     }

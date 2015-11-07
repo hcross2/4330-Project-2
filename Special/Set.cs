@@ -12,6 +12,17 @@ namespace Tree
         {
             Printer.printSet(t, n, p);
         }
+        public Node eval(Node t, Environment env)
+        {
+            Node identifier;
+            Node exp;
+            identifier=t.getCdr().getCar();
+            exp = t.getCdr().getCdr().getCar();
+            env.define(id,exp.eval(env));
+            return new StrLit("");
+            
+            
+        }
     }
 }
 
