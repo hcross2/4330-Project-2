@@ -13,7 +13,7 @@ namespace Tree
             Printer.printDefine(t, n, p);
         }
         
-        public Node eval(Node t, Environment env)
+        public Node eval(Node t, Environment env) //need to check to see if binding for x (in this case 'identifier') already exists
         {
             Node identifier = t.getCdr().getCar();
             Node value = t.getCdr().getCdr().getCar();
