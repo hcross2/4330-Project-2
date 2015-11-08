@@ -11,7 +11,7 @@
 // appropriately.  This requires a large number of classes, though.
 // Another alternative is to program BuiltIn.apply() in a functional
 // style by writing a large if-then-else chain that tests the name of
-// the function symbol.
+// the function symbol. knmk
 
 using System;
 
@@ -218,7 +218,7 @@ namespace Tree
                 //what the flying fuck?!?
             }
             
-            
+            //now???!!!!
             
         }
         
