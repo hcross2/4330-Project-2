@@ -19,9 +19,8 @@ namespace Tree
             identifier=t.getCdr().getCar();
             exp = t.getCdr().getCdr().getCar();
             env.define(id,exp.eval(env));
-            return new StrLit("");
-            
-            
+            return new StrLit("");     
+                            
         }
     }
 }
