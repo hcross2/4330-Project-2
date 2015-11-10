@@ -90,4 +90,6 @@ namespace Tree
             return true;
         }
     }
+    //DO WE NEED AN EVAL METHOD?
+    
 }

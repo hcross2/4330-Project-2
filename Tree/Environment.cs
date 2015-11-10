@@ -103,15 +103,15 @@ namespace Tree
         }
 
 
-        public void define(Node id, Node val)
+        public void define(Node id, Node val)  //ToDo: WE HAVE TO DO THIS
         {
-            // TODO: implement this function
+            
         }
 
 
-        public void assign(Node id, Node val)
+        public void assign(Node id, Node val)  //ToDo: WE HAVE TO DO THIS
         {
-            // TODO: implement this function
+            
         }
         public Node eval(Node a, environment env)
         {
