@@ -16,12 +16,10 @@ namespace Tree
         {
             Node identifier;
             Node exp;
-            identifier=t.getCdr().getCar();
+            identifier = t.getCdr().getCar();
             exp = t.getCdr().getCdr().getCar();
-            env.define(id,exp.eval(env));
-            return new StrLit("");     
-                            
+            env.define(id, exp.eval(env));
+            return new StrLit(""); //Why? Probably will return void instead of an empty node.
         }
     }
 }
-

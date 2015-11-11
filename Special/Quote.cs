@@ -13,9 +13,9 @@ namespace Tree
             Printer.printQuote(t, n, p);
         }
         
-        public node eval(Node t, Environment env)
+        public Node eval(Node t, Environment env)
         {
-            return t.getCdr().getCar(); //where do we check for quote?
+            return t.getCdr().getCar(); //Do we have to use env?
         }
     }
 }

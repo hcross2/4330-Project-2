@@ -12,7 +12,10 @@ namespace Tree
         {
             Printer.printRegular(t, n, p);
         }
+        
+        public Node eval(Node t, Environment env)
+        {
+            
+        }
     }
 }
-
-

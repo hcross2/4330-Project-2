@@ -1,5 +1,3 @@
-// BuiltIn -- the data structure for built-in functions
-
 // Class BuiltIn is used for representing the value of built-in functions
 // such as +.  Populate the initial environment with
 // (name, new BuiltIn(name)) pairs.
@@ -11,8 +9,7 @@
 // appropriately.  This requires a large number of classes, though.
 // Another alternative is to program BuiltIn.apply() in a functional
 // style by writing a large if-then-else chain that tests the name of
-// the function symbol. knmk
-// EAT SHITTT WINDOWSSSSSSSSS U SUCKKKKKKK
+// the function symbol.
 using System;
 
 namespace Tree
