@@ -57,15 +57,15 @@ namespace Tree
             if(args == null)
             {
                 Console.Write("Error: no Node");
-                return null;
+                return new Nil(); //was return null;
             }
             Node car = args.getCar();
             Node cdr = args.getCdr();
-            if(car == null || car.isNull())    //IF CAR DOESN'T EXIST
+            if(car.isNull())    //IF CAR DOESN'T EXIST
             {
                 car = new Nil();
             }
-            if(cdr == null || cdr.isNull())   //IF CDR DOESN'T EXIST
+            if(cdr.isNull())   //IF CDR DOESN'T EXIST
             {
                 cdr = new Nil();
             }
@@ -85,60 +85,53 @@ namespace Tree
             
             if(car.isNumber() && cdr.isNumber())
             {
+                int a = car.getValue();
+                int b = cdr.getValue();
                 if(symbolNode.equals("b+"))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
-                    return new IntLit(a+b);
+                    return new IntLit(a + b);
                 }
-                if(symbolNode.equals("b-"))
+                else if(symbolNode.equals("b-"))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
-                    return new IntLit(a-b);
+                    return new IntLit(a - b);
                 }
-                if(symbolNode.equals("b*"))
+                else if(symbolNode.equals("b*"))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
-                    return new IntLit(a*b);
+                    return new IntLit(a * b);
                 }
-                if(symbolNode.equals("b/"))
+                else if(symbolNode.equals("b/"))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
-                    return new IntLit(a/b);
+                    return new IntLit(a / b);
                 }
-                if(symbolNode.equals("b="))
+                else if(symbolNode.equals("b="))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
                     return new BoolLit(a=b);
                 }
-                if(symbolNode.equals("b<"))
+                else if(symbolNode.equals("b<"))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
                     return new BoolLit(a<b);
                 }
-                if(symbolNode.equals("b>"))
+                else if(symbolNode.equals("b>"))
                 {
-                    int a = car.getValue();
-                    int b = cdr.getValue();
                     return new BoolLit(a>b);
                 }                  
+                else 
+                {
+                    Console.Write("Shit broke in Builtin becuase of pizza and Netflix all day.");
+                    return new Nil();
+                }
             } 
             if(symbolNode.equals("car"))
             {
                  car = car.getCar; //previously had check for null car
-                 if (car == null || car.isNull())
+                 if (car.isNull())
                     Console.WriteLine("OOOOOOH SHIT DEMS BE ERRORS IN BUILTIN APPLY CALL OF CAR");
                  return car;
             }
             if(symbolNode.equals("cdr")) //requires a list, minimum '(example)
             {
                 cdr = car.getCdr();
-                if (cdr == null || cdr.isNull())
+                if (cdr.isNull())
                     Console.WriteLine("OOOOOOH SHIT DEMS BE ERRORS IN BUILTIN APPLY CALL OF CDR");
                 return car.getCdr;
             }
@@ -146,7 +139,6 @@ namespace Tree
             {
                 return new Cons(car,cdr); //assumes we already have a list going on
             }
-            
             if(symbolNode.equals("set-car!")) //needs better checks of criteria, errors
             {
                 car.setCar(cdr); //this looks correct. 
@@ -159,7 +151,7 @@ namespace Tree
             }
             if(symbolNode.equals("null?")) 
             {
-                return new BoolLit(car.isNull());
+                return new BoolLit(car.isNull()); //car is never null.
             }
             if(symbolNode.equals("pair?")) //1 argument
             {
@@ -171,13 +163,17 @@ namespace Tree
                 {
                     return new BoolLit(car.getValue()==cdr.getValue());
                 }
-                if(car.isString() && cdr.isString())
+                else if(car.isString() && cdr.isString())
                 {
                     return new BoolLit(car.getValue().equals(cdr.getValue()));
                 }
-                if(car.isSymbol() && cdr.isSymbol())
+                else if(car.isSymbol() && cdr.isSymbol())
                 {
                     return new BoolLit(car.getValue().equals(cdr.getValue()));
+                }
+                else if(car.isBool() && cdr.isBool())
+                {
+                    return new BoolLit(car.getBool(), cdr.getBool());
                 }
             }
             if(symbolNode.equals("procedure?"))
@@ -193,9 +189,9 @@ namespace Tree
             {
                 
             }
-            if(symbolNode.equals("display")) //one argument
+            if(symbolNode.equals("display"))
             {
-                return Console.Write(car); // may have to be recursive?
+                return Console.Write(car); 
             }
             if(symbolNode.equals("newline")) // not started
             {
