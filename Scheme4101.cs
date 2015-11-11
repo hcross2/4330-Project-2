@@ -1,4 +1,4 @@
-// SPP -- The main program of the Scheme pretty printer.
+// Emmitt Busch and Hunter Crossett
 
 using System;
 using Parse;
@@ -48,17 +48,20 @@ public class Scheme4101
         TreeBuilder builder = new TreeBuilder();
         Parser parser = new Parser(scanner, builder);
         Node root;
-
+        
         // TODO: Create and populate the built-in environment and
         // create the top-level environment
-
+        Environment env = new Environment();
+        Node id = new Ident ("car");
+        env.define(id, new Builtin(id));
+        env = new Environment(env);
         // Read-eval-print loop
 
         // TODO: print prompt and evaluate the expression
         root = (Node) parser.parseExp();
         while (root != null) 
         {
-            root.print(0);
+            root.eval(env).print(0);
             root = (Node) parser.parseExp();
         }
 

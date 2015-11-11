@@ -1,5 +1,3 @@
-// Environment.java -- a data structure for Scheme environments
-
 // An Environment is a list of frames.  Each frame represents a scope
 // in the program and contains a set of name-value pairs.  The first
 // frame in the environment represents the innermost scope.
