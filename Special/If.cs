@@ -29,7 +29,7 @@ namespace Tree
             } 
             else //shit broke
             {
-                Console.WriteLine("SHIT AINT GO NO ELSE EXPRESSION IN IF STATEMENT");
+                Console.Write("SHIT AINT GO NO ELSE EXPRESSION IN IF STATEMENT");
                 return new Nil();
             }
         }
