@@ -89,7 +89,10 @@ namespace Tree
         {
             return true;
         }
+        
+        public Node eval(Environment env)
+        {
+            return form.eval(this.env); //WHAT THE FUCK IS FORM???
+        }
     }
-    //DO WE NEED AN EVAL METHOD?
-    
 }

@@ -1,5 +1,3 @@
-// Closure.java -- the data structure for function closures
-
 // Class Closure is used to represent the value of lambda expressions.
 // It consists of the lambda expression itself, together with the
 // environment in which the lambda expression was evaluated.
@@ -27,7 +25,7 @@ namespace Tree
 
         public Node getFun()		
         {
-            return fun; 
+            return fun; //THIS AINT FUN
         }
         public Environment getEnv()	
         { 
@@ -59,20 +57,25 @@ namespace Tree
         // BuiltIn and Closure.
         public /* override */ Node apply (Node args)   //does this work??!
         {
-            Environment e = this.getEnv();
-            Node function = getFun();
-            Node functionCar = function.getCar();
-            function = function.getCdr(),getCar();
+            Environment env = this.getEnv();
+            Node fun = getFun();
+            Node funCar = fun.getCar();
+            fun = fun.getCdr(),getCar();
             
             while ((args != null && !args.getCar().isNull()))
             {
-                e.define(functionCar.getCar(), args.getCar());
+                env.define(functionCar.getCar(), args.getCar());
                 functionCar = functionCar.getCdr;
                 args=args.getCar();
             }
-            return function.eval(e);
+            return function.eval(env);
             
-            return new StringLit("Error: Closure.apply not yet implemented");
+            //return new StringLit("Error: Closure.apply not yet implemented");
+        }
+        
+        public Node eval(Node t, Environment env)
+        {
+            
         }
     }    
 }

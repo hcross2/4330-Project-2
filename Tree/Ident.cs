@@ -27,6 +27,10 @@ namespace Tree
         {
             return true;
         }
+        
+        public Node eval(Environment env) //Does this have a node passed in?
+        {
+            return env.lookup(this.env); //what this?
+        }
     }
 }
-

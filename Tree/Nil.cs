@@ -28,5 +28,10 @@ namespace Tree
         {
             return true;
         }
+        
+        public void eval()
+        {
+            return Console.Write("SHIT BROKE BECAUSE YOUR DUMB ASS TRIED TO EVALUATE A NIL NODE");
+        }
     }
 }

@@ -199,6 +199,7 @@ namespace Tree
             }
             if(symbolNode.equals("eval")) // not started
             {
+                //returns an error
                 //Make some dumb switch statement to call c# eval or (eval '(z yet) env)??
                 return eval(args);
             }
