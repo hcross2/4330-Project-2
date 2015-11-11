@@ -14,7 +14,7 @@ namespace Tree
         }
         
         public Node eval(Node t, Environment env) //need to check to see if binding for x (in this case 'identifier') already exists
-        {
+        { //works for (x 3) but does it work for twice (lambda (f x) (f.............))?
             Node identifier = t.getCdr().getCar();
             Node value = t.getCdr().getCdr().getCar();
             
@@ -24,11 +24,9 @@ namespace Tree
             }
             else
             {
-                Closure idFunction = new Closure(new Cons(t.getCdr().getCar().getCdr(),t.getCdr().getCdr(), env));
-                env.define(identifier.getCar(), idFunction)
+                Closure idFunction = new Closure(new Cons(t.getCdr().getCar().getCdr(), t.getCdr().getCdr(), env));
+                env.define(identifier.getCar(), idFunction);
             }
         }
     }
 }
-
-
