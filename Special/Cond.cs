@@ -21,15 +21,15 @@ namespace Tree
             expression = t.getCdr();
             while (!(expression.getCar().getCar().eval(env).isBool())) //This step skips all the false bools to find the one that returns true
             {
-                exp=exp.getCdr();
+                expression = expression.getCdr();
             }
-            if(exp.isNull()) //if it is of the empty list form, return it, which is what this does
+            if(expression.isNull()) //if it is of the empty list form, return it, which is what this does
             {
                 return new Nil();
             }
             else
             {
-                return (exp.getCar().getCdr().eval(env));
+                return (expression.getCar().getCdr().eval(env));
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Tree
         public eval(node t, Environment env)
         {
             if (!t.getCdr().isNull())
-                return t.eval(t.getCdr().getCar(), env); //how do we return this properl
+                return t.eval(t.getCdr().getCar(), env); //how do we return this properly
             else
                 return new Nil();;
         }
