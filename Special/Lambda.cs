@@ -14,8 +14,7 @@ namespace Tree
   	    }
         public Node eval(Node t, environment env)
         {
-            return new Closure(t.getCdr(), env);
+            return new Closure(t.getCdr(), env); //unsure if t.getCdr() is expression or exp
         }
     }
 }
-
