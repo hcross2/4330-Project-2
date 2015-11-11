@@ -18,14 +18,14 @@ namespace Tree
             Node bodystart = t.getCdr().getCar();
             Node expression = t.getCdr().getCdr().getCar();
             Environment e = new Environment(env);
-            bodystart = evalLetBody(bodystart,e);
-            return expression.eval(e);
+            bodystart = evalLetBody(bodystart, e); //Should we be returning bodystart?
+            return expression.eval(e); //Why return e?
         }
         public Node evalLetBody(Node t, Environment env)
         {
-            if(t.isNull())
+            if(t.isNull()) //This isn't correct. What do?
             {
-                Node l = new Cons(new Nil(), new Nil());
+                Node l = new Cons(new Nil(), new Nil()); //tree with pair of ()
                 return l;
             }
             else
@@ -34,46 +34,25 @@ namespace Tree
                 Node value = t.getCar().getCdr().getCar();
                 Node restBody = t.getCdr();
                 
-                if(value.isSymbol())
+                if(variable.isSymbol()) //was value earlier, should be variable?
                 {
-                    env.define(variable,vavalue.eval(env));
+                    env.define(variable,value.eval(env));
                     return evalLetBody(restBody, env);
                 }
-                if(variable.isPair())
+                else if(variable.isPair()) //if it is a cons node. ???
                 {
                     return variable.eval(env);
                 }
-                if(variable.isNull())
+                else if(variable.isNull())
                 {
+                    return new Nil();
+                }
+                else
+                {
+                    Console.Write("Error in Let->evalLetBody, variable is not valid");
                     return new Nil();
                 }
             }
         }
-        
-        
-        
-        
-        /*   THINK YOU NEED TWO FUNCTIONS?????????????????? LOOK ABOVE
-        public Node eval(Node t, Environment env)
-        {
-            Node bodystart = t.getCdr().getCar();
-            Node expression = t.getCdr().getCdr().getCar();
-            if ((t==null || t.isNull()))
-            {
-                Node list = new Cons(new Nil(), new Nil());
-                return list;
-            }
-            else
-            {
-                Node arg = bodystart.getCar().getCar();
-            }
-        }
-        */
-        public Node evalLetBody(Note t, Environment env)
-        {
-            
-        }
     }
 }
-
-
