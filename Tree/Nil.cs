@@ -8,7 +8,7 @@ namespace Tree
     {
         private static Nil instance = new Nil();
 
-        private Nil() { }
+        public Nil() { }  //I changed this to public becaues when it was private before, it wouldn't compile???!!!
   
         public static Nil getInstance()
         {
@@ -29,9 +29,10 @@ namespace Tree
             return true;
         }
         
-        public void eval()
+        public Node eval(Node t, Environment env) //DOES THIS HAVE TO BE VOID, IT USED TO BE
         {
-            return Console.Write("SHIT BROKE BECAUSE YOUR DUMB ASS TRIED TO EVALUATE A NIL NODE");
+            Console.Write("SHIT BROKE BECAUSE YOUR DUMB ASS TRIED TO EVALUATE A NIL NODE");
+            return new Nil();
         }
     }
 }

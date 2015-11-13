@@ -11,7 +11,7 @@ namespace Tree
         private static BoolLit trueInstance =  new BoolLit(true);
         private static BoolLit falseInstance = new BoolLit(false);
 
-        private BoolLit(bool b)
+        public BoolLit(bool b)  //I changed this to public, when it was private it wouldn't compile
         {
             boolVal = b;
         }
@@ -33,9 +33,11 @@ namespace Tree
         {
             return true;
         }
-        
-        public bool getBool() {
-		  return boolVal;
-	}
+        public new bool getBool()  //"Use the new keyword if hiding was intended
+        {
+            return boolVal;
+        }
+
+
     }
 }

@@ -28,9 +28,18 @@ namespace Tree
             return true;
         }
         
-        public Node eval(Environment env) //Does this have a node passed in?
+        public Node eval(Node t, Environment env) //Does this have a node passed in? THIS IS WRONG!
         {
-            return env.lookup(this.env); //what this?
+            Node a = env.lookup(this);
+            if(a.isNull())
+            {
+                Console.WriteLine("Not Found");
+            }
+            else
+            {
+                return a;
+            }
+            return null;
         }
     }
 }

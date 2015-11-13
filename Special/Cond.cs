@@ -11,12 +11,12 @@ namespace Tree
             Printer.printCond(t, n, p);
         }
         
-        public Node eval(Node t, Environment env)
+        public override Node eval(Node t, Environment env)
         {
             Node expression;
             if ((!t.isPair()))
             {
-                Console.write("Invalid Cond statement");
+                Console.Write("Invalid Cond statement");
             }
             expression = t.getCdr();
             while (!(expression.getCar().getCar().eval(env).isBool())) //This step skips all the false bools to find the one that returns true

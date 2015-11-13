@@ -51,10 +51,10 @@ public class Scheme4101
         
         // TODO: Create and populate the built-in environment and
         // create the top-level environment
-        Environment env = new Environment();
+        Tree.Environment env = new Tree.Environment(); //Added "Tree. " in front to SHUT IT UPPPP
         Node id = new Ident ("car");
-        env.define(id, new Builtin(id));
-        env = new Environment(env);
+        env.define(id, new BuiltIn(id));
+        env = new Tree.Environment(env);  //Added "Tree. " in front of Environment to Shut It UPPP
         // Read-eval-print loop
 
         // TODO: print prompt and evaluate the expression

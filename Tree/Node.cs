@@ -6,6 +6,7 @@ namespace Tree
 {
     public class Node : INode
     {
+        private Ident id;
         // The argument of print(int) is the number of characters to indent.
         // Every subclass of Node must implement print(int).
         public virtual void print(int n) { }
@@ -35,18 +36,18 @@ namespace Tree
         // the type of a node and that extract some information.
 
         // These are implemented in the appropriate subclasses to return true.
-        public virtual bool isBool()   { return false; }  // BoolLit
+        public virtual bool isBool() { return false; }  // BoolLit
         public virtual bool isNumber() { return false; }  // IntLit
         public virtual bool isString() { return false; }  // StringLit
         public virtual bool isSymbol() { return false; }  // Ident
-        public virtual bool isNull()   { return false; }  // Nil
-        public virtual bool isPair()   { return false; }  // Cons
+        public virtual bool isNull() { return false; }  // Nil
+        public virtual bool isPair() { return false; }  // Cons
 
         // Since C# does not have covariant override, it is not possible
         // for the getCar and getCdr methods to implement the interface
         // methods from INode directly.
-        public INode GetCar()  { return getCar(); }
-        public INode GetCdr()  { return getCdr(); }
+        public INode GetCar() { return getCar(); }
+        public INode GetCdr() { return getCdr(); }
 
         // Report an error in these default methods and implement them
         // in class Cons.  After setCar, a Cons cell needs to be `parsed' again
@@ -72,7 +73,7 @@ namespace Tree
         {
             Console.Error.WriteLine("Error: argument of set-cdr! is not a pair");
         }
-  
+
         public virtual string getName()
         {
             return "";
@@ -85,5 +86,28 @@ namespace Tree
         {
             return 0;
         }
+        public Node eval(Environment env)
+        {
+            if(this.isSymbol())
+            {
+                id = new Ident(this.getName());
+                return id.eval(this, env);
+            }
+            return this;
+        }
+        public bool getBool()
+        {
+            return false;
+        }
+        
+        public Node apply(Node cdr)
+        {
+            Console.Write("Dis a MuthaFukn ERRORRRRR");
+            return null;
+        }
+
     }
 }
+
+    
+

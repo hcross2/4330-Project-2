@@ -103,15 +103,32 @@ namespace Tree
 
         public void define(Node id, Node val)  //ToDo: WE HAVE TO DO THIS
         {
-            
+            Node a = find(id, frame);
+            if (a.isNull())
+            {
+                Node f = new Cons(id, new Cons(val, new Nil()));
+                this.frame = new Cons(frame, this.frame);
+            }
+            else
+            {
+                a.setCar(val);
+            }
+
         }
-
-
         public void assign(Node id, Node val)  //ToDo: WE HAVE TO DO THIS
         {
-            
+            Node a = find(id, frame);
+            if(a == null)
+            {
+                Console.WriteLine("Not Found:"+a.getName());
+            }
+            else
+            {
+                setCar(new Cons(id, val));
+            }
+
         }
-        public Node eval(Node a, environment env)
+        public Node eval(Node a, Environment env)
         {
             return new Nil();
         }

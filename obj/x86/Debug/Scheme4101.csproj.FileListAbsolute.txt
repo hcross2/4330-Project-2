@@ -1,0 +1,6 @@
+C:\Users\Emmitt\Desktop\4330-Project-2-master\obj\x86\Debug\Scheme4101.csprojResolveAssemblyReference.cache
+C:\Users\Emmitt\Desktop\4330-Project-2-master\bin\Debug\Scheme4101.exe
+C:\Users\Emmitt\Desktop\4330-Project-2-master\bin\Debug\Scheme4101.pdb
+C:\Users\Emmitt\Desktop\4330-Project-2-master\bin\Debug\SPP.dll
+C:\Users\Emmitt\Desktop\4330-Project-2-master\obj\x86\Debug\Scheme4101.exe
+C:\Users\Emmitt\Desktop\4330-Project-2-master\obj\x86\Debug\Scheme4101.pdb

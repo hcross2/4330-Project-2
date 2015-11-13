@@ -12,7 +12,7 @@ namespace Tree
         {
             Printer.printLambda(t, n, p);
   	    }
-        public Node eval(Node t, environment env)
+        public override Node eval(Node t, Environment env)
         {
             return new Closure(t.getCdr(), env); //unsure if t.getCdr() is expression or exp
         }

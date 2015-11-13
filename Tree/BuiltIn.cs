@@ -30,7 +30,7 @@ namespace Tree
 
         // TODO: The method isProcedure() should be defined in
         // class Node to return false.  ******DONE by EB on 10/30********
-        public /* override */ bool isProcedure()	
+        public /* override */ new bool isProcedure()	
         {
             return true;
         }
@@ -52,7 +52,7 @@ namespace Tree
         // to report an error.  It should be overridden only in classes
         // BuiltIn and Closure.
         
-        public Node apply(Node args)
+        public new Node apply(Node args)
         {
             if(args == null)
             {
@@ -71,14 +71,14 @@ namespace Tree
             }
             else
             {
-                cdr = cdr.getCar()  //THIS IS THE CADR, DOESNT WORK FOR (1 . 2) 
+                cdr = cdr.getCar();  //THIS IS THE CADR, DOESNT WORK FOR (1 . 2) 
             }  
             String symbolNode = symbol.getName();
-            if(symbolNode.equals("symbol?"))
+            if(symbolNode.Equals("symbol?"))
             {
                 return new BoolLit(car.isSymbol());
             }
-            if(symbolNode.equals("number?"))
+            if(symbolNode.Equals("number?"))
             {
                 return new BoolLit(car.isNumber());
             }
@@ -87,31 +87,31 @@ namespace Tree
             {
                 int a = car.getValue();
                 int b = cdr.getValue();
-                if(symbolNode.equals("b+"))
+                if(symbolNode.Equals("b+"))
                 {
                     return new IntLit(a + b);
                 }
-                else if(symbolNode.equals("b-"))
+                else if(symbolNode.Equals("b-"))
                 {
                     return new IntLit(a - b);
                 }
-                else if(symbolNode.equals("b*"))
+                else if(symbolNode.Equals("b*"))
                 {
                     return new IntLit(a * b);
                 }
-                else if(symbolNode.equals("b/"))
+                else if(symbolNode.Equals("b/"))
                 {
                     return new IntLit(a / b);
                 }
-                else if(symbolNode.equals("b="))
+                else if(symbolNode.Equals("b="))
                 {
-                    return new BoolLit(a=b);
+                    return new BoolLit(a==b);
                 }
-                else if(symbolNode.equals("b<"))
+                else if(symbolNode.Equals("b<"))
                 {
                     return new BoolLit(a<b);
                 }
-                else if(symbolNode.equals("b>"))
+                else if(symbolNode.Equals("b>"))
                 {
                     return new BoolLit(a>b);
                 }                  
@@ -121,43 +121,43 @@ namespace Tree
                     return new Nil();
                 }
             } 
-            if(symbolNode.equals("car"))
+            if(symbolNode.Equals("car"))
             {
-                 car = car.getCar; //previously had check for null car
+                 car = car.getCar(); //previously had check for null car
                  if (car.isNull())
                     Console.WriteLine("OOOOOOH SHIT DEMS BE ERRORS IN BUILTIN APPLY CALL OF CAR");
                  return car;
             }
-            if(symbolNode.equals("cdr")) //requires a list, minimum '(example)
+            if(symbolNode.Equals("cdr")) //requires a list, minimum '(example)
             {
                 cdr = car.getCdr();
                 if (cdr.isNull())
                     Console.WriteLine("OOOOOOH SHIT DEMS BE ERRORS IN BUILTIN APPLY CALL OF CDR");
-                return car.getCdr;
+                return car.getCdr();
             }
-            if(symbolNode.equals("cons"))
+            if(symbolNode.Equals("cons"))
             {
                 return new Cons(car,cdr); //assumes we already have a list going on
             }
-            if(symbolNode.equals("set-car!")) //needs better checks of criteria, errors
+            if(symbolNode.Equals("set-car!")) //needs better checks of criteria, errors
             {
                 car.setCar(cdr); //this looks correct. 
                 return car;
             }
-            if(symbolNode.equals("set-cdr!")) //needs better checks of criteria, errors
+            if(symbolNode.Equals("set-cdr!")) //needs better checks of criteria, errors
             {
                 car.setCdr(cdr);
                 return car;
             }
-            if(symbolNode.equals("null?")) 
+            if(symbolNode.Equals("null?")) 
             {
                 return new BoolLit(car.isNull()); //car is never null.
             }
-            if(symbolNode.equals("pair?")) //1 argument
+            if(symbolNode.Equals("pair?"))
             {
                 return new BoolLit(car.isPair());
             }
-            if(symbolNode.equals("eq?"))     //Equals for ints, bools, strings. nodes (only 2 arguments)
+            if(symbolNode.Equals("eq?"))  
             {
                 if(car.isNumber() && cdr.isNumber())
                 {
@@ -165,57 +165,60 @@ namespace Tree
                 }
                 else if(car.isString() && cdr.isString())
                 {
-                    return new BoolLit(car.getValue().equals(cdr.getValue()));
+                    return new BoolLit(car.getValue().Equals(cdr.getValue()));
                 }
                 else if(car.isSymbol() && cdr.isSymbol())
                 {
-                    return new BoolLit(car.getValue().equals(cdr.getValue()));
+                    return new BoolLit(car.getValue().Equals(cdr.getValue()));
                 }
                 else if(car.isBool() && cdr.isBool())
                 {
-                    return new BoolLit(car.getBool(), cdr.getBool());
+                    return new BoolLit(car.getBool().Equals(cdr.getBool()));
                 }
             }
-            if(symbolNode.equals("procedure?"))
+            if(symbolNode.Equals("procedure?"))
             {
                 return new BoolLit(car.isProcedure());
             }
-            if(symbolNode.equals("read")) // not started
-            {
-                Parser P = new Parser(); //?????
-                
-            }
-            if(symbolNode.equals("write")) // not started
+            if(symbolNode.Equals("read")) // not started
             {
                 
+                return null;
             }
-            if(symbolNode.equals("display"))
+            if(symbolNode.Equals("write")) // not started
             {
-                return Console.Write(car); 
+                car.print(0);
+                return new StringLit("");
             }
-            if(symbolNode.equals("newline")) // not started
+            if(symbolNode.Equals("display"))
             {
-                return Console.WriteLine(); //shhhhhh no tears
+                return car; 
             }
-            if(symbolNode.equals("eval")) // not started
+            if(symbolNode.Equals("newline")) // is this right?!
             {
-                //returns an error
-                //Make some dumb switch statement to call c# eval or (eval '(z yet) env)??
-                return eval(args);
+                return new StringLit("");
             }
-            if(symbolNode.equals("apply")) // not started
+            if(symbolNode.Equals("eval")) // is this right?!
             {
-                return apply(car); //??
+                return car;
             }
-            if(symbolNode.equals("interaction-environment")) // not started
+            if(symbolNode.Equals("apply"))
             {
+                return car.apply(cdr); //??
+            }
+            if(symbolNode.Equals("interaction-environment")) // not started
+            {
+                return null;
                 //what the flying fuck?!?
             }
-            
+
             //now???!!!!
-            
+            return null;
         }
-        
+        public Node eval(Node t, Environment env)
+        {
+            return new Nil();
+        }
         
         
         

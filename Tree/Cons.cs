@@ -9,7 +9,7 @@ namespace Tree
         private Node car;
         private Node cdr;
         private Special form;
-    
+        private Environment env;
         public Cons(Node a, Node d)
         {
             car = a;
@@ -74,7 +74,7 @@ namespace Tree
             return cdr;
         }
 
-        public override void setCar(Node a)
+        /*public override void setCar(Node a)
         {
             car = a;
             parseList();
@@ -84,15 +84,15 @@ namespace Tree
         {
             cdr = d;
         }
-
+        */
         public override bool isPair()
         {
             return true;
         }
         
-        public Node eval(Environment env)
+        public new Node eval(Environment env)
         {
-            return form.eval(this.env); //WHAT THE FUCK IS FORM???
+            return form.eval(this, env); //WHAT THE FUCK IS FORM??? WHY DONT THIS WORK :(
         }
     }
 }

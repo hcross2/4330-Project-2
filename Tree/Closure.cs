@@ -34,7 +34,7 @@ namespace Tree
 
         // TODO: The method isProcedure() should be defined in
         // class Node to return false.    ******DONE*********
-        public /* override */ bool isProcedure()	
+        public /* override */new bool isProcedure()	
         {
             return true; 
         }
@@ -55,27 +55,27 @@ namespace Tree
         // TODO: The method apply() should be defined in class Node
         // to report an error.  It should be overridden only in classes
         // BuiltIn and Closure.
-        public /* override */ Node apply (Node args)   //does this work??!
+        public  /*override*/new  Node apply (Node args)   //does this work??!
         {
-            Environment env = this.getEnv();
             Node fun = getFun();
             Node funCar = fun.getCar();
-            fun = fun.getCdr(),getCar();
+            Environment env = this.getEnv();
+            fun = fun.getCdr().getCar();
             
             while ((args != null && !args.getCar().isNull()))
             {
-                env.define(functionCar.getCar(), args.getCar());
-                functionCar = functionCar.getCdr;
-                args=args.getCar();
+                env.define(funCar.getCar(), args.getCar());
+                funCar = funCar.getCdr();
+                args=args.getCdr();
             }
-            return function.eval(env);
+            return funCar.eval(env);
             
             //return new StringLit("Error: Closure.apply not yet implemented");
         }
         
         public Node eval(Node t, Environment env)
         {
-            
+            return new Nil();
         }
     }    
 }

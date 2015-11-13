@@ -12,14 +12,14 @@ namespace Tree
         {
             Printer.printSet(t, n, p);
         }
-        public Node eval(Node t, Environment env)
+        public override Node eval(Node t, Environment env)
         {
             Node identifier;
             Node exp;
             identifier = t.getCdr().getCar();
             exp = t.getCdr().getCdr().getCar();
-            env.define(id, exp.eval(env));
-            return new StrLit(""); //Why? Probably will return void instead of an empty node.
+            env.define(identifier, exp.eval(env));
+            return new StringLit(""); //Why? Probably will return void instead of an empty node.
         }
     }
 }

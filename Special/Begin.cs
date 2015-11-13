@@ -11,12 +11,16 @@ namespace Tree
             Printer.printBegin(t, n, p);
         }
         
-        public eval(Node t, Environment env)
+        public override Node eval(Node t, Environment env)
         {
-            if (!t.getCdr().isNull())
-                return t.eval(t.getCdr().getCar(), env); //how do we return this properly
-            else
-                return new Nil();;
+            t = t.getCdr();
+            while (!t.getCdr().isNull())
+            {
+                t.getCar().eval(env);
+                t = t.getCdr();
+            }
+            
+            return null;
         }
     }
 }
