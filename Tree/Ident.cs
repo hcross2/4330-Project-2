@@ -31,7 +31,7 @@ namespace Tree
         public Node eval(Node t, Environment env) //Does this have a node passed in? THIS IS WRONG!
         {
             Node a = env.lookup(this);
-            if(a.isNull())
+            if(a == Nil.getInstance())
             {
                 Console.WriteLine("Not Found");
             }

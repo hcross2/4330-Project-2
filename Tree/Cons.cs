@@ -9,7 +9,6 @@ namespace Tree
         private Node car;
         private Node cdr;
         private Special form;
-        private Environment env;
         public Cons(Node a, Node d)
         {
             car = a;

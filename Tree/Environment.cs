@@ -47,7 +47,7 @@ namespace Tree
         }
    
         public Environment(Environment e)
-	{
+	    {
             frame = Nil.getInstance();
             env = e;
         }
@@ -104,10 +104,9 @@ namespace Tree
         public void define(Node id, Node val)  //ToDo: WE HAVE TO DO THIS
         {
             Node a = find(id, frame);
-            if (a.isNull())
+            if (a == Nil.getInstance())
             {
-                Node f = new Cons(id, new Cons(val, new Nil()));
-                this.frame = new Cons(frame, this.frame);
+                frame = new Cons(new Cons(id, new Cons(val, new Nil())), frame);
             }
             else
             {

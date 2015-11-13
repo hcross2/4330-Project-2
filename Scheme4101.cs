@@ -61,8 +61,16 @@ public class Scheme4101
         root = (Node) parser.parseExp();
         while (root != null) 
         {
-            root.eval(env).print(0);
-            root = (Node) parser.parseExp();
+            if(env!=null)
+            {
+                root.eval(env).print(0);
+                root = (Node)parser.parseExp();
+            }
+            else
+            {
+                Console.WriteLine("Environment not defined");
+            }
+            
         }
 
         return 0;
