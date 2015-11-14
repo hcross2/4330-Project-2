@@ -19,8 +19,7 @@ namespace Tree
                 t.getCar().eval(env);
                 t = t.getCdr();
             }
-            
-            return null;
+            return t.getCar().eval(env); //unsure if this is actual value or just the node
         }
     }
 }
