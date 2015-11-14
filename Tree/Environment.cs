@@ -106,11 +106,11 @@ namespace Tree
             Node a = find(id, frame);
             if (a == Nil.getInstance())
             {
-                frame = new Cons(new Cons(id, new Cons(val, new Nil())), frame);
+                frame = new Cons(new Cons(id, val), frame);
             }
             else
             {
-                a.setCar(val);
+                a = val;
             }
 
         }
